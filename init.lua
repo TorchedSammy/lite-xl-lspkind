@@ -35,7 +35,7 @@ local kindPresets = {
 }
 local defaultOpts = {
 	format = 'symbolText',
-	font_name = 'Nerd Font',
+	fontName = 'Nerd Font',
 	size = 12 * SCALE
 }
 local formatters = {}
@@ -83,7 +83,7 @@ function M.setup(opts)
 	if opts.font_raw then
 		style.kind_font = opts.font_raw
 	else
-		style.kind_font = font(opts.font_name, opts.size)
+		style.kind_font = font(opts.fontName, opts.size)
 	end
 
 	local formatKind

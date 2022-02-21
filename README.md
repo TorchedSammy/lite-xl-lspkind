@@ -48,7 +48,7 @@ lspkind.setup {
 		TypeParameter = ''
 	},
 	format = 'symbolText',
-	font_name = 'Nerd Font', -- doesn't have to be exact
+	fontName = 'Nerd Font', -- doesn't have to be exact
 	size = 12 * SCALE, -- Size of font for icons
 	-- if the above font_name doesnt work (which will happen on windows)
 	font_raw = nil -- renderer.font.load(USERDIR .. '/path/to/font.ttf', size * SCALE) -- as example
