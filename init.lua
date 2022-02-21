@@ -34,9 +34,24 @@ local kindPresets = {
 	}
 }
 local defaultOpts = {
+	format = 'symbolText',
 	font_name = 'Nerd Font',
-	size = 16 * SCALE
+	size = 12 * SCALE
 }
+local formatters = {}
+
+function formatters.text(_, name)
+	return name
+end
+function formatters.symbol(symbol, _)
+	return symbol
+end
+function formatters.symbolText(symbol, name)
+	return symbol .. ' ' .. name
+end
+function formatters.textSymbol(symbol, name)
+	return name .. ' ' .. symbol
+end
 
 local function font(name, size)
 	local proc = process.start {'sh', '-c', 'fc-list | grep "' .. name ..'"'}
@@ -51,11 +66,11 @@ local function getKindName(id)
 	return Server.completion_item_kind[id] or ''
 end
 
-local function getKindIcon(id, symbols)
+local function getKind(id, symbols)
 	local kindName = getKindName(id)
 	local kindIcon = symbols[kindName]
 
-	return kindIcon
+	return kindIcon, kindName
 end
 
 local M = {}
@@ -71,8 +86,19 @@ function M.setup(opts)
 		style.kind_font = font(opts.font_name, opts.size)
 	end
 
+	local formatKind
+	if type(opts.format) == 'function' then
+		formatKind = opts.format
+	else
+		local formatFunc = formatters[opts.format]
+		if not formatFunc then formatFunc = formatters.text end
+
+		formatKind = formatFunc
+	end
+
 	function Server.get_completion_item_kind(id)
-		return getKindIcon(id, symbols)
+		local symbol, name = getKind(id, symbols)
+		return formatKind(symbol, name)
 	end
 end
 
