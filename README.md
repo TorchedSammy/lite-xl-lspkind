@@ -3,7 +3,6 @@
 
 ![](https://safe.kashima.moe/u1tpwtoq96tk.png)  
 
-# Prerequisite
 # Install
 Clone this repo into your plugins directory for Lite XL, then move out the
 `autocomplete.lua`.  
