@@ -47,7 +47,7 @@ lspkind.setup {
 		Operator = '',
 		TypeParameter = ''
 	},
-	format = 'symbolText',
+	format = 'symbolText', -- available default formats are text, symbol, symbolText and textSymbol
 	fontName = 'Nerd Font', -- doesn't have to be exact
 	size = 12 * SCALE, -- Size of font for icons
 	-- if the above font_name doesnt work (which will happen on windows)
@@ -55,7 +55,7 @@ lspkind.setup {
 }
 ```
 
-If you want to add a custom format for the lspkind, `format` can be a function.  
+If you want to add a custom format for the lspkind, `format` can be a function:  
 ```lua
 local lspkind = require 'plugins.lspkind'
 
