@@ -55,7 +55,7 @@ end
 
 local function font(name, size)
 	local proc = process.start {'sh', '-c', 'fc-list | grep "' .. name ..'"'}
-	proc:wait(200)
+	proc:wait(process.WAIT_INFINITE)
 	local out = proc:read_stdout() or ''
 	local file = util.split(out, ':')[1]
 
