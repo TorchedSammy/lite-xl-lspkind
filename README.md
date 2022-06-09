@@ -8,7 +8,7 @@ Clone this repo into your plugins directory for Lite XL, then move out the
 `autocomplete.lua`.  
 As an example, if in the Lite XL config directory (`~/.config/lite-xl`)
 ```
-git clone https://github.com/onsails/lspkind-nvim plugins/lspkind
+git clone https://github.com/TorchedSammy/lite-xl-lspkind.git plugins/lspkind
 mv plugins/lspkind/autocomplete.lua plugins/
 ```
 
