@@ -1,4 +1,4 @@
--- mod-version:2 -- lite-xl 2.0
+-- mod-version:3
 local style = require 'core.style'
 local common = require 'core.common'
 local util = require 'plugins.lsp.util'
@@ -30,7 +30,8 @@ local kindPresets = {
 		Struct = 'פּ',
 		Event = '',
 		Operator = '',
-		TypeParameter = ''
+		TypeParameter = '',
+		Unknown = ''
 	}
 }
 local defaultOpts = {
@@ -55,19 +56,24 @@ end
 
 local function font(name, size)
 	local proc = process.start {'sh', '-c', 'fc-list | grep "' .. name ..'"'}
-	proc:wait(process.WAIT_INFINITE)
-	local out = proc:read_stdout() or ''
-	local file = util.split(out, ':')[1]
+	if proc then
+		proc:wait(process.WAIT_INFINITE)
+		local out = proc:read_stdout() or ''
+		local file = util.split(out, ':')[1]
 
-	return renderer.font.load(file, size)
+		return renderer.font.load(file, size)
+	end
 end
 
 local function getKindName(id)
-	return Server.completion_item_kind[id] or ''
+	return Server.completion_item_kind[id]
 end
 
 local function getKind(id, symbols)
 	local kindName = getKindName(id)
+	if not kindName then
+		return symbols.Unknown, 'Unknown'
+	end
 	local kindIcon = symbols[kindName]
 
 	return kindIcon, kindName

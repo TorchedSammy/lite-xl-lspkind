@@ -45,7 +45,8 @@ lspkind.setup {
 		Struct = 'פּ',
 		Event = '',
 		Operator = '',
-		TypeParameter = ''
+		TypeParameter = '',
+		Unknown = ''
 	},
 	format = 'symbolText', -- available default formats are text, symbol, symbolText and textSymbol
 	fontName = 'Nerd Font', -- doesn't have to be exact
