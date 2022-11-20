@@ -37,7 +37,7 @@ local kindPresets = {
 local defaultOpts = {
 	format = 'symbolText',
 	fontName = 'Nerd Font',
-	size = 12 * SCALE
+	size = 14 * SCALE
 }
 local formatters = {}
 
